@@ -1,0 +1,9 @@
+{
+	"name": "hexedit.net",
+	"version": "0.0.1",
+	"description": "Source for hexedit.net",
+	"main": "index.js",
+	"devDependencies": {
+		"rollup": "^4.1.1"
+	}
+}
