@@ -1,7 +1,6 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import terser from '@rollup/plugin-terser';
 import copy from 'rollup-plugin-copy';
-import postcss from 'rollup-plugin-postcss';
+import styles from 'rollup-plugin-styler';
 
 export default [
 	{
@@ -16,7 +15,11 @@ export default [
 				TESTING: isDev,
 			}),*/
 			//isProduction ? del({targets: 'dist/*'}) : null,
-			postcss({
+			styles({
+				mode: [
+					'inject',
+					(varname) => `import { styleInject } from 'harmony-ui';styleInject(${varname});`
+				],
 			}),
 			/*json({
 				compact: true,

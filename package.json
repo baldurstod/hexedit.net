@@ -8,7 +8,7 @@
 		"@rollup/plugin-terser": "^0.4.4",
 		"rollup": "^4.1.1",
 		"rollup-plugin-copy": "^3.5.0",
-		"rollup-plugin-postcss": "^4.0.2"
+		"rollup-plugin-styler": "^1.8.0"
 	},
 	"dependencies": {
 		"harmony-ui": "github:baldurstod/harmony-ui"
