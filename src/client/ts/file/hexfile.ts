@@ -1,8 +1,9 @@
 export class HexFile {
-	#file;
+	#file: File;
 	#cursorOffset = 0;
 	#offset = 0;
-	constructor(file) {
+
+	constructor(file: File) {
 		this.#file = file;
 	}
 

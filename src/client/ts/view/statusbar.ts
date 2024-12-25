@@ -1,22 +1,21 @@
-import { createElement } from 'harmony-ui';
+import { createShadowRoot } from 'harmony-ui';
 
 import '../../css/statusbar.css';
 
 export class Statusbar {
-	#html;
-	constructor() {
-	}
+	#shadowRoot?: ShadowRoot;
 
 	#initHTML() {
-		this.#html = createElement('div', {
+		this.#shadowRoot = createShadowRoot('div', {
 			class: 'statusbar',
 			innerText: 'this is the statusbar',
 		})
-		return this.#html;
+		return this.#shadowRoot;
 
 	}
 
-	get html() {
-		return this.#html ?? this.#initHTML();
+	get html(): HTMLElement {
+		return (this.#shadowRoot ?? this.#initHTML()).host as HTMLElement;
 	}
+
 }

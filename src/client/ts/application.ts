@@ -1,8 +1,8 @@
-import { Editor } from './view/editor.js';
-import { Statusbar } from './view/statusbar.js';
-import { Toolbar } from './view/toolbar.js';
-import { Controller } from './controller.js';
-import { HexFile } from './file/hexfile.js';
+import { Editor } from './view/editor';
+import { Statusbar } from './view/statusbar';
+import { Toolbar } from './view/toolbar';
+import { Controller } from './controller';
+import { HexFile } from './file/hexfile';
 
 import '../css/application.css';
 import '../css/vars.css';
@@ -31,7 +31,7 @@ class Application {
 	#createNewFile() {
 		console.log('create new file');
 		//const file = new File(['azertyuiop'], 'untitled');
-		const file = new File(new Uint8Array(1024), 'untitled');
+		const file = new File([new Uint8Array(1024)], 'untitled');
 		const hexFile = new HexFile(file);
 		this.#editor.setFile(hexFile);
 	}

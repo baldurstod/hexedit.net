@@ -1,17 +1,16 @@
-import { createElement } from 'harmony-ui';
+import { createElement, createShadowRoot } from 'harmony-ui';
 
 import '../../css/editor.css';
+import { HexFile } from '../file/hexfile';
 
 export class Editor {
-	#html;
-	#htmlOffset;
-	#hexFile;
+	#shadowRoot?: ShadowRoot;
+	#htmlOffset!: HTMLElement;
+	#hexFile?: HexFile;
 	#bytesPerRow = 16;
-	constructor() {
-	}
 
 	#initHTML() {
-		this.#html = createElement('div', {
+		this.#shadowRoot = createShadowRoot('div', {
 			class: 'editor',
 			childs: [
 				this.#htmlOffset = createElement('div', {
@@ -21,17 +20,17 @@ export class Editor {
 			],
 		})
 		this.#refresh();
-		return this.#html;
+		return this.#shadowRoot;
 
 	}
 
-	setFile(file) {
+	setFile(file: HexFile) {
 		this.#hexFile = file;
 		this.#refresh();
 	}
 
-	get html() {
-		return this.#html ?? this.#initHTML();
+	get html(): HTMLElement {
+		return (this.#shadowRoot ?? this.#initHTML()).host as HTMLElement;
 	}
 
 	#refresh() {
@@ -60,7 +59,7 @@ export class Editor {
 
 	}
 
-	set bytesPerRow(bytesPerRow) {
+	setBytesPerRow(bytesPerRow: number) {
 		this.#bytesPerRow = Math.max(bytesPerRow, 1);
 	}
 }

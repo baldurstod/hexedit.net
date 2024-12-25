@@ -1,15 +1,13 @@
-import { createElement } from 'harmony-ui';
+import { createElement, createShadowRoot } from 'harmony-ui';
 import { Controller } from '../controller';
 
 import '../../css/toolbar.css';
 
 export class Toolbar {
-	#html;
-	constructor() {
-	}
+	#shadowRoot?: ShadowRoot;
 
 	#initHTML() {
-		this.#html = createElement('div', {
+		this.#shadowRoot = createShadowRoot('div', {
 			class: 'toolbar',
 			innerText: 'this is the toolbar',
 			childs: [
@@ -23,11 +21,11 @@ export class Toolbar {
 
 			],
 		})
-		return this.#html;
+		return this.#shadowRoot;
 
 	}
 
-	get html() {
-		return this.#html ?? this.#initHTML();
+	get html(): HTMLElement {
+		return (this.#shadowRoot ?? this.#initHTML()).host as HTMLElement;
 	}
 }
