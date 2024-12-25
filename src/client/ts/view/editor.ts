@@ -1,6 +1,6 @@
 import { createElement, createShadowRoot } from 'harmony-ui';
 
-import '../../css/editor.css';
+import editorCSS from '../../css/editor.css';
 import { HexFile } from '../file/hexfile';
 
 export class Editor {
@@ -11,6 +11,7 @@ export class Editor {
 
 	#initHTML() {
 		this.#shadowRoot = createShadowRoot('div', {
+			adoptStyle: editorCSS,
 			class: 'editor',
 			childs: [
 				this.#htmlOffset = createElement('div', {

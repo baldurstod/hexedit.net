@@ -3,9 +3,13 @@ import { Statusbar } from './view/statusbar';
 import { Toolbar } from './view/toolbar';
 import { Controller } from './controller';
 import { HexFile } from './file/hexfile';
+import { documentStyle } from 'harmony-ui';
 
-import '../css/application.css';
-import '../css/vars.css';
+import htmlCSS from '../css/html.css';
+import varsCSS from '../css/vars.css';
+
+documentStyle(htmlCSS);
+documentStyle(varsCSS);
 
 class Application {
 	#editor = new Editor();

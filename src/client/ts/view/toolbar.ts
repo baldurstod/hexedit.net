@@ -1,14 +1,14 @@
 import { createElement, createShadowRoot } from 'harmony-ui';
 import { Controller } from '../controller';
 
-import '../../css/toolbar.css';
+import toolbarCSS from '../../css/toolbar.css';
 
 export class Toolbar {
 	#shadowRoot?: ShadowRoot;
 
 	#initHTML() {
 		this.#shadowRoot = createShadowRoot('div', {
-			class: 'toolbar',
+			adoptStyle: toolbarCSS,
 			innerText: 'this is the toolbar',
 			childs: [
 				createElement('div', {
