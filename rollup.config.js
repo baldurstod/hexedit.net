@@ -1,32 +1,19 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import copy from 'rollup-plugin-copy';
-import styles from 'rollup-plugin-styler';
+import css from 'rollup-plugin-import-css';
+import typescript from '@rollup/plugin-typescript';
 
 export default [
 	{
-		input: './src/js/application.js',
+		input: './src/client/ts/application.ts',
 		output: {
 			file: './dist/js/application.js',
 			format: 'esm'
 		},
 		plugins: [
-			/*replace({
-				preventAssignment: true,
-				TESTING: isDev,
-			}),*/
-			//isProduction ? del({targets: 'dist/*'}) : null,
-			styles({
-				mode: [
-					'inject',
-					(varname) => `import { styleInject } from 'harmony-ui';styleInject(${varname});`
-				],
-			}),
-			/*json({
-				compact: true,
-			}),*/
-			//image(),
+			css(),
+			typescript(),
 			nodeResolve(),
-			//terser(),
 			copy({
 				copyOnce: true,
 				targets: [
