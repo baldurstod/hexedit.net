@@ -3,7 +3,8 @@ import { Statusbar } from './view/statusbar';
 import { Toolbar } from './view/toolbar';
 import { Controller } from './controller';
 import { HexFile } from './file/hexfile';
-import { documentStyle } from 'harmony-ui';
+import { createShadowRoot, documentStyle } from 'harmony-ui';
+import appCSS from '../css/app.css';
 
 import htmlCSS from '../css/html.css';
 import varsCSS from '../css/vars.css';
@@ -12,6 +13,7 @@ documentStyle(htmlCSS);
 documentStyle(varsCSS);
 
 class Application {
+	#shadowRoot?: ShadowRoot;
 	#editor = new Editor();
 	#appStatusbar = new Statusbar();
 	#appToolbar = new Toolbar();
@@ -25,11 +27,16 @@ class Application {
 		Controller.addEventListener('createnewfile', event => this.#createNewFile());
 	}
 
-
 	#initHTML() {
-		document.body.append(this.#appToolbar.html);
-		document.body.append(this.#editor.html);
-		document.body.append(this.#appStatusbar.html);
+		this.#shadowRoot = createShadowRoot('div', {
+			adoptStyle: appCSS,
+			parent: document.body,
+			childs: [
+				this.#appToolbar.html,
+				this.#editor.html,
+				this.#appStatusbar.html,
+			],
+		});
 	}
 
 	#createNewFile() {

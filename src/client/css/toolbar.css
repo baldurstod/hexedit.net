@@ -1,5 +1,5 @@
 :host {
-	height: 5rem;
 	width: 100%;
 	background-color: chocolate;
+	flex: 0 0 5rem;
 }
